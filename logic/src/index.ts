@@ -83,7 +83,7 @@ interface HarvestMove {
   bonus_actions: BonusAction[];
 }
 
-function createPepperPatch(w = 20, h = 14) {
+function createPepperPatch(w = 21, h = 15) {
   let grid = [];
   for (let i = 0; i < w * h; i++) {
     grid.push(null);

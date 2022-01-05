@@ -10,7 +10,7 @@ recipe cards
  - value (points)
 game board and planted peppers
  - grid is 7x10 in terms of peppers
-because farmers move between the peppers, we should think of the board as a 14x20 grid instead, but with three separate classes of coordinates
+because farmers move between the peppers, we should think of the board as a 15x21 grid instead, but with three separate classes of coordinates
 harvesting - one even, one odd like (1, 2) - this is the space between two pepper spots where farmers move to, and where the crossbreeding product is rewarded.
 planting - both odd - this is where peppers are planted.
 pathing - both even - farmers pass through between harvesting coordinates, can only pass through once a turn to prevent "doubling back".
