@@ -74,7 +74,7 @@ interface PepperPatch {
   grid: PatchItem[];
   w: number;
   h: number;
-  players: { [ key: PlayerColor ]: Point };
+  players: { [ key: string ]: Point };
 }
 
 interface HarvestMove {
@@ -91,6 +91,9 @@ function createPepperPatch(w = 21, h = 15) {
 }
 
 function pointToGrid(patch: PepperPatch, point: Point) {
+  if (point.x >= patch.w || point.y >= patch.h || point.x < 0 || point.y < 0) {
+    throw new Error(`Point out of bounds ${pointString(point)}`);
+  }
   return point.x + point.y * patch.w;
 }
 
@@ -145,4 +148,23 @@ function validHarvest(patch: PepperPatch, move: HarvestMove) {
     point = next;
   }
 }
-
+function validPlant(patch: PepperPatch, pepper: Pepper, point: Point) {
+  let occupied = getPepper(patch, point);
+  if (occupied) {
+    throw new Error(`Cannot plant on space occupied by ${occupied.color}`);
+  }
+  let neighbor = false;
+  try {
+    for (let x of [-2, 2]) {
+      for (let y of [-2, 2]) {
+        if (getPepper(patch, { x, y })) {
+          neighbor = true;
+        }
+      }
+    }
+    // ignore because these should just be out of bounds points
+  } catch (e) {}
+  if (!neighbor) {
+    throw new Error(`Cannot plant without a neighbor`);
+  }
+}
