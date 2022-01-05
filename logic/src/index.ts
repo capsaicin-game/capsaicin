@@ -1,7 +1,20 @@
-type PepperColor = "Red"|"Blue"|"Yellow"|"Green"|"Orange"|"Purple"|"Brown"|"White"|"Black"|"Ghost";
+// export type PepperColorType = "Red"|"Blue"|"Yellow"|"Green"|"Orange"|"Purple"|"Brown"|"White"|"Black"|"Ghost";
 type PlayerColor = "Red"|"Blue"|"Yellow"|"Green"|"Orange"|"Purple";
 type Role = "Path"|"Harvest"|"Plant";
 type BonusAction = "ExtraPlant"|"ExtraMove"|"TurnAround";
+
+export enum PepperColor {
+  "Red",
+  "Blue",
+  "Yellow",
+  "Green",
+  "Orange",
+  "Purple",
+  "Brown",
+  "White",
+  "Black",
+  "Ghost",
+}
 
 function isEven(n: number): boolean {
   return n % 2 == 0;
@@ -11,7 +24,7 @@ function absDiff(x: number, y: number): number {
   return Math.abs(x - y);
 }
 
-interface Pepper {
+export interface Pepper {
   kind: 'pepper',
   color: PepperColor;
 }
