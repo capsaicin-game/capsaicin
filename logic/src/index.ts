@@ -119,52 +119,80 @@ function maxMoveLength(move: HarvestMove) {
   }
 }
 function validHarvest(patch: PepperPatch, move: HarvestMove) {
-  if (move.path.length > maxMoveLength(move)) {
-    throw new Error(`Harvest path too long!`);
-  } else if (!patch.players[move.player.color]) {
-    throw new Error(`Invalid player ${move.player.color}`);
-  }
-  let point = patch.players[move.player.color];
-  if (!pointEq(point, move.path[0])) {
-    throw new Error('Player not on starting point of move');
-  }
-  let visited = [];
-  for (let next of move.path.slice(1)) {
-    let pathPart = pathBetween(point, next);
-    if (!pathPart) {
-      throw new Error(`No path from ${pointString(point)} to ${pointString(next)}`);
+  try {
+    if (move.path.length > maxMoveLength(move)) {
+      throw new Error(`Harvest path too long!`);
+    } else if (!patch.players[move.player.color]) {
+      throw new Error(`Invalid player ${move.player.color}`);
     }
-    if (visited.find(p => pointEq(pathPart, p))) {
-      if (move.bonus_actions.includes("TurnAround")) {
-        move.bonus_actions = move.bonus_actions.filter(ba => ba !== "TurnAround");
-      } else {
-        throw new Error(`Cannot double back at ${pointString(point)}`);
+    let point = patch.players[move.player.color];
+    if (!pointEq(point, move.path[0])) {
+      throw new Error('Player not on starting point of move');
+    }
+    let visited = [];
+    for (let next of move.path.slice(1)) {
+      let pathPart = pathBetween(point, next);
+      if (!pathPart) {
+        throw new Error(`No path from ${pointString(point)} to ${pointString(next)}`);
       }
+      if (visited.find(p => pointEq(pathPart, p))) {
+        if (move.bonus_actions.includes("TurnAround")) {
+          move.bonus_actions = move.bonus_actions.filter(ba => ba !== "TurnAround");
+        } else {
+          throw new Error(`Cannot double back at ${pointString(point)}`);
+        }
+      }
+      let blocker = getPlayer(patch, next);
+      if (blocker) {
+        throw new Error(`Player ${blocker.color} is blocking the way`);
+      }
+      point = next;
     }
-    let blocker = getPlayer(patch, next);
-    if (blocker) {
-      throw new Error(`Player ${blocker.color} is blocking the way`);
-    }
-    point = next;
+    return valid();
+  } catch (e) {
+    return err(e.message);
   }
 }
 function validPlant(patch: PepperPatch, pepper: Pepper, point: Point) {
-  let occupied = getPepper(patch, point);
-  if (occupied) {
-    throw new Error(`Cannot plant on space occupied by ${occupied.color}`);
-  }
-  let neighbor = false;
   try {
-    for (let x of [-2, 2]) {
-      for (let y of [-2, 2]) {
-        if (getPepper(patch, { x, y })) {
-          neighbor = true;
+    let occupied = getPepper(patch, point);
+    if (occupied) {
+      throw new Error(`Cannot plant on space occupied by ${occupied.color}`);
+    }
+    let neighbor = false;
+    try {
+      for (let x of [-2, 2]) {
+        for (let y of [-2, 2]) {
+          if (getPepper(patch, { x, y })) {
+            neighbor = true;
+          }
         }
       }
+      // ignore because these should just be out of bounds points
+    } catch (e) {}
+    if (!neighbor) {
+      throw new Error(`Cannot plant without a neighbor`);
     }
-    // ignore because these should just be out of bounds points
-  } catch (e) {}
-  if (!neighbor) {
-    throw new Error(`Cannot plant without a neighbor`);
+    return valid();
+  } catch (e) {
+    return err(e.message);
   }
+}
+
+function valid(): Validity {
+  return {
+    valid: true
+  };
+}
+
+function err(message: string): Validity {
+  return {
+    valid: false,
+    message
+  };
+}
+
+interface Validity {
+  valid: boolean;
+  message?: string;
 }
