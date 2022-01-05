@@ -124,16 +124,4 @@ export const harvestPeppers = (peppers: Pepper[]): Pepper[] => {
             return [{ color: PepperColor.Green, kind: 'pepper'}]
         }
     }
-
-    //     if ((isPrimaryColor(pepper1) && isSecondaryColor(pepper2)) ||(isPrimaryColor(pepper2) && isSecondaryColor(pepper1))) {
-    //         return [{ kind: "pepper", color: PepperColor.Brown }]
-    //     }
-
-
-    //     if (pepper1.color === PepperColor.Brown && isPrimaryorSecondary(pepper2) || pepper2.color === PepperColor.Brown && isPrimaryorSecondary(pepper1)) {
-    //         // brown and r/b/y/g/o/p pepper
-    //         return []
-    //     }
-    // }
-
 }
