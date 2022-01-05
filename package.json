@@ -1,3 +1,7 @@
 {
-    "workspaces": ["logic", "server", "client"]
+    "workspaces": [
+        "logic",
+        "server",
+        "client"
+    ]
 }
