@@ -118,6 +118,7 @@ function maxMoveLength(move: HarvestMove) {
     return 3;
   }
 }
+// TODO: add hypothetical yield calcs to the valid functions
 function validHarvest(patch: PepperPatch, move: HarvestMove) {
   try {
     if (move.path.length > maxMoveLength(move)) {
@@ -195,4 +196,5 @@ function err(message: string): Validity {
 interface Validity {
   valid: boolean;
   message?: string;
+  harvest?: Pepper[];
 }
