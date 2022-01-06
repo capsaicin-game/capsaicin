@@ -1,7 +1,7 @@
 {
     "workspaces": [
-        "logic",
-        "server",
-        "client"
+        "./logic",
+        "./server",
+        "./client"
     ]
 }

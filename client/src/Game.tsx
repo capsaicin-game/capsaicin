@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Pepper } from 'logic';
 
 export const Game = (): React.ReactElement => {
   let Board = styled.div`
     height: 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-rows: repeat(5, 1fr);
   `;
 
   let Market = styled.div`
