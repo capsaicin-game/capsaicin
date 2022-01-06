@@ -1,10 +1,13 @@
 import React from 'react';
+import styled from 'styled-components';
 import './App.css';
+import { Game } from './Game';
 
 export const App = (): React.ReactElement => {
+  const App = styled.div`
+    height: 100%;
+  `;
   return (
-    <div className="App">
-      <h1>PETER PIPER PICKED A PECK OF PICKLED PEPPERS</h1>
-    </div>
+    <App><Game /></App>
   );
 };
