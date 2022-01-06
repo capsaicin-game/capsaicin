@@ -11,3 +11,11 @@ export const App = (): React.ReactElement => {
     <App><Game /></App>
   );
 };
+/* import { Client } from 'boardgame.io/react';
+* import { TicTacToe } from './boardgameIO/ticTacToe';
+* import { TicTacToeBoard } from './boardgameIO/board';
+*
+* export const App = Client({
+*   game: TicTacToe,
+*   board: TicTacToeBoard,
+* }); */
