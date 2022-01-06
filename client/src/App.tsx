@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
 
-export const App = (): React.ReactElement => {
-  return (
-    <div className="App">
-      <h1>PETER PIPER PICKED A PECK OF PICKLED PEPPERS</h1>
-    </div>
-  );
-};
+import { Client } from 'boardgame.io/react';
+import { TicTacToe } from './boardgameIO/ticTacToe';
+import { TicTacToeBoard } from './boardgameIO/board';
+
+export const App = Client({
+  game: TicTacToe,
+  board: TicTacToeBoard,
+});
