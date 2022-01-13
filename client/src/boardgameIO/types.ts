@@ -14,9 +14,13 @@ export enum TimeOfDay {
     "MORNING",
     "AFTERNOON"
 }
+export enum BonusAction {
+    "ExtraPlant",
+    "ExtraMove",
+    "TurnAround",
+}
 export type PlayerColor = "Red"|"Blue"|"Yellow"|"Green"|"Orange"|"Purple"
 export type Role = "Path"|"Harvest"|"Plant"
-export type BonusAction = "ExtraPlant"|"ExtraMove"|"TurnAround"
 export type PlaqueColor = "Secondary"|"Brown"|"Black"|"White"|"Ghost"
 
 export interface Pepper {
