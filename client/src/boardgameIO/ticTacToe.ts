@@ -1,7 +1,6 @@
 
 import { INVALID_MOVE } from 'boardgame.io/core';
 import { Ctx } from 'boardgame.io';
-// import { Pepper } from '../../../logic/src/index';
 
 type Cells = Array<string | null>
 
