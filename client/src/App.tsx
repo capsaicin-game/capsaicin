@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import './App.css';
 import { Game } from './game/Game';
 import { Client } from 'boardgame.io/client'
@@ -18,13 +17,10 @@ const buildClient = (numPlayers: number=4) => {
 }
 
 export const App = (): React.ReactElement => {
-  const App = styled.div`
-    height: 100%;
-  `
-  buildClient(4)
   return (
-    <App>
+    <div className="app">
+      <GameClient />
       <Game />
-    </App>
-  )
+    </div>
+  );
 };
