@@ -1,0 +1,40 @@
+.board {
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+}
+
+.market {
+    grid-column: 1;
+    grid-row: 1 / 5;
+    background-color: #349854;
+    height: 100%;
+}
+
+.auction {
+    grid-column: 2 / 6;
+    grid-row: 1;
+    background-color: #872354;
+}
+.patch {
+    grid-column: 2 / 4;
+    grid-row: 2 / 5;
+    background-color: #786832;
+}
+.cookoff {
+    grid-column: 4 / 6;
+    grid-row: 2 / 5;
+    background-color: #679273;
+}
+.city-hall {
+    grid-column: 1 / 3;
+    grid-row: 5;
+    background-color: #342376;
+}
+
+.turn-order {
+    grid-column: 3 / 6;
+    grid-row: 5;
+    background-color: #878922;
+}
