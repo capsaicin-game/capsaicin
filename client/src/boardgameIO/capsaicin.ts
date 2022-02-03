@@ -6,6 +6,7 @@ import {
     Plaque,
     Player
 } from './types'
+import { PepperPatch } from 'logic'
 import { generateAllPlayers } from './utils/setupMethods'
 
 // this should be where we store the players/peppers

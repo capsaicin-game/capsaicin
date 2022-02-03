@@ -97,7 +97,7 @@ interface HarvestMove {
 }
 
 function createPepperPatch(w = 21, h = 15) {
-  let grid = [];
+  let grid: PatchItem[] = [];
   for (let i = 0; i < w * h; i++) {
     grid.push(null);
   }
@@ -146,10 +146,9 @@ function validHarvest(patch: PepperPatch, move: HarvestMove) {
     let visited = [];
     for (let next of move.path.slice(1)) {
       let pathPart = pathBetween(point, next);
-      if (!pathPart) {
+      if (pathPart == null) {
         throw new Error(`No path from ${pointString(point)} to ${pointString(next)}`);
-      }
-      if (visited.find(p => pointEq(pathPart, p))) {
+      } else if (visited.find(p => pointEq(pathPart, p))) {
         if (move.bonus_actions.includes("TurnAround")) {
           move.bonus_actions = move.bonus_actions.filter(ba => ba !== "TurnAround");
         } else {
