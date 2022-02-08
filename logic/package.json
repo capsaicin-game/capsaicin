@@ -12,5 +12,8 @@
     "prepare": "npm run build"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "option-t": "^30.0.0"
+  }
 }
