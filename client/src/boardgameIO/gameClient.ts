@@ -1,27 +1,26 @@
 // import Board from './Board';
-let BgReact = require('boardgame.io/react');
+import BgReact from 'boardgame.io/react'
+import { Ctx } from 'boardgame.io';
+import { GameState } from './types';
+import {
+  gameSetup
+} from './utils/setupMethods'
 
 const createGame = () => {
   return {
     name: 'Capsaicin',
-    setup: () => {
-      return ({
+    setup: () => (gameSetup(4)),
 
-      });
-    },
-    moves: {
-
-    },
-    endIf: (G: any, ctx: any) => {
+    // endIf: (G: any, ctx: any) => {
         
-    }
+    // }
   };
 }
 
 const createClient = () => {
   return BgReact.Client({
     game: createGame(),
-    numPlayers: 1,
+    numPlayers: 4,
     // board: Board,
     debug: true,
   });

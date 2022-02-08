@@ -1,4 +1,4 @@
-import { Pepper, PepperColor, TimeOfDay } from "../types"
+import { PepperColor, TimeOfDay } from "../types"
 export const MARKET_CARDS = {
     [TimeOfDay.MORNING]: [
         {
@@ -9,7 +9,7 @@ export const MARKET_CARDS = {
             peppersRequired: {
                 [PepperColor.Red]: 2
             },
-            getPepperReward: () => ({[PepperColor.Brown]: 1})
+            rewards: {[PepperColor.Brown]: 1}
         },
         {
             kind: 'marketCard',
@@ -20,7 +20,7 @@ export const MARKET_CARDS = {
                 [PepperColor.Red]: 1,
                 [PepperColor.Yellow]: 1,
             },
-            getPepperReward: () => ({[PepperColor.Orange]: 1})
+            rewards: {[PepperColor.Orange]: 1}
         },
         {
             kind: 'marketCard',
@@ -48,7 +48,7 @@ export const MARKET_CARDS = {
             peppersRequired: {
                 [PepperColor.Yellow]: 2
             },
-            getPepperReward: () => ({[PepperColor.Brown]: 1})
+            rewards: {[PepperColor.Brown]: 1}
         },
         {
             kind: 'marketCard',
@@ -59,7 +59,7 @@ export const MARKET_CARDS = {
                 [PepperColor.Red]: 1,
                 [PepperColor.Blue]: 1,
             },
-            getPepperReward: () => ({[PepperColor.Purple]: 1})
+            rewards: {[PepperColor.Purple]: 1}
         },
         {
             kind: 'marketCard',
@@ -87,7 +87,7 @@ export const MARKET_CARDS = {
             peppersRequired: {
                 [PepperColor.Blue]: 2
             },
-            getPepperReward: () => ({[PepperColor.Brown]: 1})
+            rewards: {[PepperColor.Brown]: 1}
         },
         {
             kind: 'marketCard',
@@ -98,7 +98,7 @@ export const MARKET_CARDS = {
                 [PepperColor.Blue]: 1,
                 [PepperColor.Yellow]: 1,
             },
-            getPepperReward: () => ({[PepperColor.Green]: 1})
+            rewards: {[PepperColor.Green]: 1}
         },
         {
             kind: 'marketCard',
@@ -126,7 +126,7 @@ export const MARKET_CARDS = {
             peppersRequired: {
                 [PepperColor.Red]: 3
             },
-            getPepperReward: () => ({[PepperColor.Orange]: 2})
+            rewards: {[PepperColor.Orange]: 2}
         },
         {
             kind: 'marketCard',
@@ -137,7 +137,7 @@ export const MARKET_CARDS = {
                 [PepperColor.Red]: 1,
                 [PepperColor.Green]: 1,
             },
-            getPepperReward: () => ({[PepperColor.Brown]: 1})
+            rewards: {[PepperColor.Brown]: 1}
         },
         {
             kind: 'marketCard',
@@ -148,7 +148,7 @@ export const MARKET_CARDS = {
                 [PepperColor.Yellow]: 1,
                 [PepperColor.Green]: 1,
             },
-            getPepperReward: () => ({[PepperColor.Brown]: 1})
+            rewards: {[PepperColor.Brown]: 1}
         },
         {
             kind: 'marketCard',
@@ -159,7 +159,7 @@ export const MARKET_CARDS = {
                 [PepperColor.Green]: 1,
                 [PepperColor.Blue]: 1,
             },
-            getPepperReward: () => ({[PepperColor.Brown]: 1})
+            rewards: {[PepperColor.Brown]: 1}
         },
         {
             kind: 'marketCard',
@@ -169,7 +169,7 @@ export const MARKET_CARDS = {
             peppersRequired: {
                 [PepperColor.Yellow]: 3,
             },
-            getPepperReward: () => ({[PepperColor.Green]: 2})
+            rewards: {[PepperColor.Green]: 2}
         },
         {
             kind: 'marketCard',
@@ -179,7 +179,7 @@ export const MARKET_CARDS = {
             peppersRequired: {
                 [PepperColor.Blue]: 3,
             },
-            getPepperReward: () => ({[PepperColor.Purple]: 2})
+            rewards: {[PepperColor.Purple]: 2}
         },
         {
             kind: 'marketCard',
@@ -190,7 +190,7 @@ export const MARKET_CARDS = {
                 [PepperColor.Red]: 1,
                 [PepperColor.Orange]: 1,
             },
-            getPepperReward: () => ({[PepperColor.Brown]: 1})
+            rewards: {[PepperColor.Brown]: 1}
         },
         {
             kind: 'marketCard',
@@ -201,7 +201,7 @@ export const MARKET_CARDS = {
                 [PepperColor.Red]: 1,
                 [PepperColor.Purple]: 1,
             },
-            getPepperReward: () => ({[PepperColor.Brown]: 1})
+            rewards: {[PepperColor.Brown]: 1}
         },
         {
             kind: 'marketCard',
@@ -212,7 +212,7 @@ export const MARKET_CARDS = {
                 [PepperColor.Yellow]: 1,
                 [PepperColor.Orange]: 1,
             },
-            getPepperReward: () => ({[PepperColor.Brown]: 1})
+            rewards: {[PepperColor.Brown]: 1}
         },
         {
             kind: 'marketCard',
@@ -223,7 +223,7 @@ export const MARKET_CARDS = {
                 [PepperColor.Yellow]: 1,
                 [PepperColor.Purple]: 1,
             },
-            getPepperReward: () => ({[PepperColor.Brown]: 1})
+            rewards: {[PepperColor.Brown]: 1}
         },
         {
             kind: 'marketCard',
@@ -234,7 +234,7 @@ export const MARKET_CARDS = {
                 [PepperColor.Blue]: 1,
                 [PepperColor.Purple]: 1,
             },
-            getPepperReward: () => ({[PepperColor.Brown]: 1})
+            rewards: {[PepperColor.Brown]: 1}
         },
         {
             kind: 'marketCard',
@@ -245,7 +245,7 @@ export const MARKET_CARDS = {
                 [PepperColor.Blue]: 1,
                 [PepperColor.Orange]: 1,
             },
-            getPepperReward: () => ({[PepperColor.Brown]: 1})
+            rewards: {[PepperColor.Brown]: 1}
         },
     ],
     [TimeOfDay.AFTERNOON]: [
@@ -257,7 +257,7 @@ export const MARKET_CARDS = {
             PeppersRequired: {
                 [PepperColor.Green]: 2,
             },
-            getPepperReward: () => ({[PepperColor.Brown]: 2}),
+            rewards: ({[PepperColor.Brown]: 2}),
         },
         {
             kind: "marketCard",
@@ -267,7 +267,7 @@ export const MARKET_CARDS = {
             PeppersRequired: {
                 [PepperColor.Orange]: 2,
             },
-            getPepperReward: () => ({[PepperColor.Brown]: 2}),
+            rewards: ({[PepperColor.Brown]: 2}),
         },
         {
             kind: "marketCard",
@@ -277,7 +277,7 @@ export const MARKET_CARDS = {
             PeppersRequired: {
                 [PepperColor.Purple]: 2,
             },
-            getPepperReward: () => ({[PepperColor.Brown]: 2}),
+            rewards: ({[PepperColor.Brown]: 2}),
         },
         {
             kind: "marketCard",
@@ -287,7 +287,7 @@ export const MARKET_CARDS = {
             PeppersRequired: {
                 [PepperColor.Green]: 3,
             },
-            getPepperReward: () => ({[PepperColor.Brown]: 2}),
+            rewards: ({[PepperColor.Brown]: 2}),
         },
         {
             kind: "marketCard",
@@ -297,7 +297,7 @@ export const MARKET_CARDS = {
             PeppersRequired: {
                 [PepperColor.Orange]: 3,
             },
-            getPepperReward: () => ({[PepperColor.Brown]: 2}),
+            rewards: ({[PepperColor.Brown]: 2}),
         },
         {
             kind: "marketCard",
@@ -307,7 +307,7 @@ export const MARKET_CARDS = {
             PeppersRequired: {
                 [PepperColor.Purple]: 3,
             },
-            getPepperReward: () => ({[PepperColor.Brown]: 2}),
+            rewards: ({[PepperColor.Brown]: 2}),
         },
         {
             kind: "marketCard",
@@ -348,7 +348,7 @@ export const MARKET_CARDS = {
                 [PepperColor.White]: 1,
                 [PepperColor.Orange]: 1,
             },
-            getPepperReward: () => ({[PepperColor.Black]: 1}),
+            rewards: ({[PepperColor.Black]: 1}),
         },
         {
             kind: "marketCard",
@@ -359,7 +359,7 @@ export const MARKET_CARDS = {
                 [PepperColor.White]: 1,
                 [PepperColor.Green]: 1,
             },
-            getPepperReward: () => ({[PepperColor.Black]: 1}),
+            rewards: ({[PepperColor.Black]: 1}),
         },
         {
             kind: "marketCard",
@@ -370,7 +370,7 @@ export const MARKET_CARDS = {
                 [PepperColor.White]: 1,
                 [PepperColor.Purple]: 1,
             },
-            getPepperReward: () => ({[PepperColor.Black]: 1}),
+            rewards: ({[PepperColor.Black]: 1}),
         },
         {
             kind: "marketCard",
@@ -381,7 +381,7 @@ export const MARKET_CARDS = {
                 [PepperColor.Black]: 1,
                 [PepperColor.Orange]: 1,
             },
-            getPepperReward: () => ({[PepperColor.White]: 1}),
+            rewards: ({[PepperColor.White]: 1}),
         },
         {
             kind: "marketCard",
@@ -392,7 +392,7 @@ export const MARKET_CARDS = {
                 [PepperColor.Black]: 1,
                 [PepperColor.Purple]: 1,
             },
-            getPepperReward: () => ({[PepperColor.White]: 1}),
+            rewards: ({[PepperColor.White]: 1}),
         },
         {
             kind: "marketCard",
@@ -403,7 +403,7 @@ export const MARKET_CARDS = {
                 [PepperColor.Black]: 1,
                 [PepperColor.Green]: 1,
             },
-            getPepperReward: () => ({[PepperColor.White]: 1}),
+            rewards: ({[PepperColor.White]: 1}),
         },
         {
             kind: "marketCard",
@@ -414,7 +414,7 @@ export const MARKET_CARDS = {
                 [PepperColor.Black]: 1,
                 [PepperColor.Brown]: 1,
             },
-            getPepperReward: () => ({[PepperColor.White]: 1}),
+            rewards: ({[PepperColor.White]: 1}),
         },
         {
             kind: "marketCard",
@@ -425,7 +425,7 @@ export const MARKET_CARDS = {
                 [PepperColor.White]: 1,
                 [PepperColor.Brown]: 1,
             },
-            getPepperReward: () => ({[PepperColor.Black]: 1}),
+            rewards: ({[PepperColor.Black]: 1}),
         },
         {
             kind: "marketCard",
@@ -436,7 +436,7 @@ export const MARKET_CARDS = {
                 [PepperColor.Black]: 1,
                 [PepperColor.White]: 1,
             },
-            getPepperReward: () => ({[PepperColor.Ghost]: 1}),
+            rewards: ({[PepperColor.Ghost]: 1}),
         },
         {
             kind: "marketCard",
@@ -487,7 +487,7 @@ export const MARKET_CARDS = {
                 [PepperColor.Orange]: 1,
                 [PepperColor.Purple]: 1,
             },
-            getPepperReward: (color: PepperColor) => ({[color]: 1})
+            rewards: {[PepperColor.Black]: 1}
         },
         {
             kind: "marketCard",
@@ -499,7 +499,7 @@ export const MARKET_CARDS = {
                 [PepperColor.Orange]: 1,
                 [PepperColor.Purple]: 1,
             },
-            getPepperReward: (color: PepperColor) => ({[color]: 1})
+            rewards: {[PepperColor.White]: 1}
         },
     ]
 }

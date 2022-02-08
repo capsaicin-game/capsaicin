@@ -1,4 +1,4 @@
-
+import { Ctx } from 'boardgame.io';
 // import { INVALID_MOVE } from 'boardgame.io/core';
 import {
     GameState,
@@ -8,25 +8,14 @@ import {
 } from './utils/setupMethods'
 
 
-export const createGame = (numPlayers: number) => {
+export const Capsaicin = () => {
     return {
         name: 'Capsaicin',
-        setup: (): GameState  => (gameSetup(numPlayers)),
-        phases: {
-            auction: {
-                moves: {
-
-                }
-            },
-            planting: {
-
-            },
-            harvest: {
-
-            },
-            fulfillment: {
-
+        setup: (): GameState  => (gameSetup(4)),
+        moves: {
+            testMove: (G: GameState, ctx: Ctx) => {
+              console.log({G, ctx});
             }
-        }
+          },
     }
 }

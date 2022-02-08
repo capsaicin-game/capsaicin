@@ -1,5 +1,5 @@
 import { PepperColor } from "../types"
-export const ALL_RECIPIES = [
+export const ALL_RECIPES = [
     {
         name: 'Hungarian Wax Pepper',
         ingredients: {
