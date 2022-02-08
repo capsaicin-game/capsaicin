@@ -1,45 +1,21 @@
-
-// import { INVALID_MOVE } from 'boardgame.io/core';
 import { Ctx } from 'boardgame.io';
+// import { INVALID_MOVE } from 'boardgame.io/core';
 import {
-    TimeOfDay,
-    Plaque,
-    Player
+    GameState,
 } from './types'
-import { generateAllPlayers } from './utils/setupMethods'
+import {
+    gameSetup
+} from './utils/setupMethods'
 
-// this should be where we store the players/peppers
-type Cells = Array<any>
 
-interface GameState {
-    cells: Cells
-    timeOfDay: TimeOfDay
-    availablePlaques: Plaque[]
-    players: Player[],
-    
-}
-export const createGame = (numPlayers: number) => {
-    const players = generateAllPlayers(numPlayers)
+export const Capsaicin = () => {
     return {
-        setup: (ctx: Ctx)  => ({
-            cells: ["This should be the actual game board"],
-            timeOfDay: TimeOfDay.MORNING,
-            players,
-
-        }),
-        phases: {
-            auction: {
-
-            },
-            planting: {
-
-            },
-            harvest: {
-
-            },
-            fulfillment: {
-
+        name: 'Capsaicin',
+        setup: (): GameState  => (gameSetup(4)),
+        moves: {
+            testMove: (G: GameState, ctx: Ctx) => {
+              console.log({G, ctx});
             }
-        }
+          },
     }
 }

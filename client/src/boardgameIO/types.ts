@@ -1,3 +1,16 @@
+export interface GameState {
+    cells: any[]
+    timeOfDay: TimeOfDay
+    availablePlaques: PlaqueState
+    players: Player[]
+    auctionDeck: AuctionCard[]
+    currentPlayerIdx: number
+    recipes: Recipe[]
+    marketCards: MarketCard[]
+}
+export interface PlaqueState {
+    [key: string]: Plaque[]
+}
 export enum PepperColor {
     "Red",
     "Blue",
@@ -10,6 +23,7 @@ export enum PepperColor {
     "Black",
     "Ghost",
 }
+
 export enum TimeOfDay {
     "MORNING",
     "AFTERNOON"
@@ -27,11 +41,15 @@ export interface Pepper {
     kind: 'pepper'
     color: PepperColor
 }
+export type Ingredients = {
+    [key in PepperColor]: number;
+}
 
 export interface Recipe {
     kind: 'recipe'
-    ingredients: Pepper[]
+    ingredients: Ingredients
     pointValue: number
+    name: string
 }
 
 export interface Plaque {
@@ -43,29 +61,29 @@ export interface MarketCard {
     kind: 'marketCard'
     time: TimeOfDay
     pointValue: number
-    getPepperReward?: (arg0?: PepperColor) => Pepper
-    peppersRequired: Pepper[]
+    rewards: Ingredients
+    peppersRequired: Ingredients
     moneyReward: number
 }
 export interface AuctionCard {
     kind: 'auctionCard'
     time: TimeOfDay
-    peppers: Pepper[]
+    peppers: PepperColor[]
 }
 export interface Player {
-    kind: 'player';
-    color: PlayerColor;
-    peppers: Pepper[];
-    score: number;
-    money: number;
-    actions: BonusAction[];
-    recipiesCompleted: Recipe[];
-    plaques: Plaque[];
-    marketCards: MarketCard[];
+    kind: 'player'
+    color: PlayerColor
+    peppers: Pepper[]
+    score: number
+    money: number
+    actions: BonusAction[]
+    recipiesCompleted: Recipe[]
+    plaques: Plaque[]
+    marketCards: MarketCard[]
 }
 
 export interface Point {
-    x: number;
-    y: number;
+    x: number
+    y: number
 }
   
