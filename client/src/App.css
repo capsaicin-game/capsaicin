@@ -20,7 +20,17 @@
 .patch {
     grid-column: 2 / 4;
     grid-row: 2 / 5;
-    background-color: #786832;
+    background-color: #b2a497;
+    display: grid;
+    grid-template-columns: 10;
+    grid-template-rows: 7;
+}
+.patch-piece {
+    width: 3rem;
+    height: 3rem;
+    background-color: brown;
+    margin-top: 4px;
+    margin-left: 4px;
 }
 .cookoff {
     grid-column: 4 / 6;
