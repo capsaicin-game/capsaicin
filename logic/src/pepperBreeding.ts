@@ -124,4 +124,5 @@ export const harvestPeppers = (peppers: Pepper[]): Pepper[] => {
             return [{ color: PepperColor.Green, kind: 'pepper'}]
         }
     }
+    return [];
 }
