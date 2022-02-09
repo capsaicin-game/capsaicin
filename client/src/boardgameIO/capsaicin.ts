@@ -3,6 +3,7 @@ import { Ctx } from 'boardgame.io';
 import {
     GameState,
 } from './types'
+import { PepperPatch } from 'logic'
 import {
     gameSetup
 } from './utils/setupMethods'

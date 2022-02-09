@@ -64,18 +64,18 @@ function pointString(point: Point) {
   * Find the path point between two harvest points
   * @throws
   */
-function pathBetween(point: Point, other: Point): Point|null {
+function pathBetween(point: Point, other: Point): Point {
   if (pointRole(point) !== 'Harvest' || pointRole(other) !== 'Harvest') {
     throw new Error(`Both points need to be harvest points: ${pointString(point)} ${pointString(other)}`);
   } else if (absDiff(point.x, other.x) > 1 || absDiff(point.y, other.y) > 1) {
-    return null;
+    throw new Error(`Points not close enough`);
   }
   if (isEven(point.x) && isEven(other.y)) {
     return { x: this.x, y: other.y };
   } else if (isEven(this.y) && isEven(this.x)) {
     return { x: other.x, y: this.y };
   } else {
-    return null;
+    throw new Error('Unpathable points');
   }
 }
 
@@ -83,7 +83,7 @@ type PatchItem = Pepper|Player|null;
 
 
 
-interface PepperPatch {
+export interface PepperPatch {
   grid: PatchItem[];
   w: number;
   h: number;
@@ -97,7 +97,7 @@ interface HarvestMove {
 }
 
 function createPepperPatch(w = 21, h = 15) {
-  let grid = [];
+  let grid: PatchItem[] = [];
   for (let i = 0; i < w * h; i++) {
     grid.push(null);
   }
@@ -146,10 +146,9 @@ function validHarvest(patch: PepperPatch, move: HarvestMove) {
     let visited = [];
     for (let next of move.path.slice(1)) {
       let pathPart = pathBetween(point, next);
-      if (!pathPart) {
+      if (pathPart == null) {
         throw new Error(`No path from ${pointString(point)} to ${pointString(next)}`);
-      }
-      if (visited.find(p => pointEq(pathPart, p))) {
+      } else if (visited.find(p => pointEq(pathPart, p))) {
         if (move.bonus_actions.includes("TurnAround")) {
           move.bonus_actions = move.bonus_actions.filter(ba => ba !== "TurnAround");
         } else {
