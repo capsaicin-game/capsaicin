@@ -5,6 +5,8 @@ export interface GameState {
     players: Player[]
     auctionDeck: AuctionCard[]
     currentPlayerIdx: number
+    recipes: Recipe[]
+    marketCards: MarketCard[]
 }
 export interface PlaqueState {
     [key: string]: Plaque[]
@@ -39,11 +41,15 @@ export interface Pepper {
     kind: 'pepper'
     color: PepperColor
 }
+export type Ingredients = {
+    [key in PepperColor]: number;
+}
 
 export interface Recipe {
     kind: 'recipe'
-    ingredients: Pepper[]
+    ingredients: Ingredients
     pointValue: number
+    name: string
 }
 
 export interface Plaque {
@@ -55,8 +61,8 @@ export interface MarketCard {
     kind: 'marketCard'
     time: TimeOfDay
     pointValue: number
-    getPepperReward?: (arg0?: PepperColor) => Pepper
-    peppersRequired: Pepper[]
+    rewards: Ingredients
+    peppersRequired: Ingredients
     moneyReward: number
 }
 export interface AuctionCard {

@@ -1,4 +1,3 @@
-import 'option-t/esm/PlainOption/Option'
 // export type PepperColorType = "Red"|"Blue"|"Yellow"|"Green"|"Orange"|"Purple"|"Brown"|"White"|"Black"|"Ghost";
 type PlayerColor = "Red"|"Blue"|"Yellow"|"Green"|"Orange"|"Purple";
 type Role = "Path"|"Harvest"|"Plant";
@@ -65,18 +64,18 @@ function pointString(point: Point) {
   * Find the path point between two harvest points
   * @throws
   */
-function pathBetween(point: Point, other: Point): Option<Point> {
+function pathBetween(point: Point, other: Point): Point {
   if (pointRole(point) !== 'Harvest' || pointRole(other) !== 'Harvest') {
     throw new Error(`Both points need to be harvest points: ${pointString(point)} ${pointString(other)}`);
   } else if (absDiff(point.x, other.x) > 1 || absDiff(point.y, other.y) > 1) {
-    return null;
+    throw new Error(`Points not close enough`);
   }
   if (isEven(point.x) && isEven(other.y)) {
-    return createSome({ x: this.x, y: other.y });
+    return { x: this.x, y: other.y };
   } else if (isEven(this.y) && isEven(this.x)) {
     return { x: other.x, y: this.y };
   } else {
-    return null;
+    throw new Error('Unpathable points');
   }
 }
 
@@ -84,7 +83,7 @@ type PatchItem = Pepper|Player|null;
 
 
 
-interface PepperPatch {
+export interface PepperPatch {
   grid: PatchItem[];
   w: number;
   h: number;

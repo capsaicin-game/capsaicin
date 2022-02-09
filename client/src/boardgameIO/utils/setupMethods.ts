@@ -1,4 +1,21 @@
-import { Player, PlayerColor, PlaqueColor, Pepper, PlaqueState, Plaque, PepperColor, BonusAction, GameState, TimeOfDay, AuctionCard } from '../types'
+
+import { ALL_RECIPES } from './recipiesConfig'
+import { MARKET_CARDS } from './marketConfig'
+import {
+    Player,
+    PlayerColor,
+    PlaqueColor,
+    Pepper,
+    PlaqueState,
+    Plaque,
+    PepperColor,
+    BonusAction,
+    GameState,
+    TimeOfDay,
+    AuctionCard,
+    Recipe,
+    MarketCard
+} from '../types'
 
 function shuffle(array: any[]) {
     let currentIndex = array.length,  randomIndex;
@@ -8,11 +25,11 @@ function shuffle(array: any[]) {
   
       // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
+      currentIndex--
   
       // And swap it with the current element.
       [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
+        array[randomIndex], array[currentIndex]]
     }
     return array;
 }
@@ -24,9 +41,9 @@ const generateAllPlayers = (numPlayers: number): Player[] => {
     const allPlayerColors = shuffle(["Red", "Blue", "Yellow", "Green", "Orange", "Purple"]) as PlayerColor[]
     const playas = []
     for (let i = 0; i < numPlayers; i++) {
-        playas.push(genPlayer(allPlayerColors[i]));
+        playas.push(genPlayer(allPlayerColors[i]))
     }
-    return shuffle(playas);
+    return shuffle(playas)
 }
 
 const generateAllPlaques = (numPlayers: number): PlaqueState => {
@@ -54,7 +71,7 @@ const generateAllPlaques = (numPlayers: number): PlaqueState => {
     }
     if (numPlayers < 4) {
         for (const color in plaqueNumColors) {
-
+            state[color] = state[color].slice(1)
         }
     }
     return state
@@ -84,11 +101,6 @@ const genPlayer = (color: PlayerColor): Player => {
     }
 }
 
-export const generateAuctionDeck = (time: TimeOfDay): AuctionCard[] => {
-    //TODO: add logic for generating the afternoonDeck
-    return genMorningAuctionDeck();
-}
-
 const genMorningAuctionDeck = (): AuctionCard[] => {
     const primaries = [PepperColor.Red, PepperColor.Blue, PepperColor.Yellow];
     const variations = [PepperColor.Red, PepperColor.Blue, PepperColor.Yellow, PepperColor.Red, PepperColor.Blue, PepperColor.Yellow, PepperColor.Orange, PepperColor.Green, PepperColor.Purple] as PepperColor[]
@@ -116,11 +128,77 @@ const genMorningAuctionDeck = (): AuctionCard[] => {
     return cards;
 }
 
+const genAfternoonAuctionDeck = (): AuctionCard[] => {
+    const time = TimeOfDay.AFTERNOON
+    const kind = "auctionCard"
+
+    const cards = [] as AuctionCard[]
+    const triple = [PepperColor.Red, PepperColor.Yellow, PepperColor.Blue]
+    const secondaries = [PepperColor.Green, PepperColor.Orange, PepperColor.Purple]
+
+    for (let i = 0; i < 4; i++) {
+        cards.push({
+            kind,
+            time,
+            peppers: [PepperColor.Black]
+        })
+        cards.push({
+            kind,
+            time,
+            peppers: [PepperColor.White]
+        })
+    }
+    for (let i = 0; i < 5; i++) {
+        cards.push({
+            kind,
+            time,
+            peppers: [...triple],
+        })
+    }
+    for (let i = 0; i < 2; i++) {
+        secondaries.forEach((color) => {
+            cards.push({
+                kind,
+                time,
+                peppers: [color]
+            });
+            secondaries.forEach((color2) => {
+                cards.push({
+                    kind,
+                    time,
+                    peppers: [color, color2]
+                })
+            })
+        })
+    }
+    return cards
+}
+
+export const generateAuctionDeck = (time: TimeOfDay): AuctionCard[] => {
+    if (time === TimeOfDay.MORNING) {
+        return shuffle(genMorningAuctionDeck())
+    }
+    return shuffle(genAfternoonAuctionDeck())
+}
+
+const generateRecipes = (numPlayers: number): Recipe[] => {
+    const numRecipes = numPlayers * 4
+    const recipes = shuffle([...ALL_RECIPES])
+    return recipes.slice(0, numRecipes)
+}
+export const generateMarketDeck = (time: TimeOfDay, numPlayers: number): MarketCard[] => {
+    const marketCards = shuffle([...MARKET_CARDS[time]])
+    const numOrders = 3 + (2 * numPlayers)
+    return marketCards.slice(0, numOrders)
+}
+
 export const gameSetup = (numPlayers: number): GameState => ({
     timeOfDay: TimeOfDay.MORNING,
     players: generateAllPlayers(numPlayers),
     availablePlaques: generateAllPlaques(numPlayers),
-    auctionDeck: genMorningAuctionDeck(),
+    auctionDeck: generateAuctionDeck(TimeOfDay.MORNING),
+    recipes: generateRecipes(numPlayers),
+    marketCards: generateMarketDeck(TimeOfDay.MORNING, numPlayers),
     currentPlayerIdx: 0,
     cells: ["GAME BOARD GOES HERE"],
 })
