@@ -1,11 +1,7 @@
 import { Ctx } from 'boardgame.io';
 // import { INVALID_MOVE } from 'boardgame.io/core';
-import {
-    GameState,
-} from './types'
-import {
-    gameSetup
-} from './utils/setupMethods'
+import { GameState } from './models'
+import { gameSetup } from './utils/setupMethods'
 
 
 export const Capsaicin = () => {

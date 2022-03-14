@@ -2,21 +2,21 @@
 import { ALL_RECIPES } from './recipiesConfig'
 import { MARKET_CARDS } from './marketConfig'
 import {
-    Player,
+    PlayerData,
     PlayerColor,
     PlaqueColor,
-    Pepper,
     PlaqueState,
     Plaque,
     PepperColor,
     BonusAction,
-    GameState,
     TimeOfDay,
     AuctionCard,
     Recipe,
-    MarketCard
-} from '../types'
+    MarketCard,
+    PlayDirection,
+} from '../models/types'
 
+import { GameState } from '../models'
 function shuffle(array: any[]) {
     let currentIndex = array.length,  randomIndex;
   
@@ -34,7 +34,7 @@ function shuffle(array: any[]) {
     return array;
 }
 
-const generateAllPlayers = (numPlayers: number): Player[] => {
+const generateAllPlayers = (numPlayers: number): PlayerData[] => {
     if (numPlayers < 1 || numPlayers > 6) {
         throw new Error("You cant play with this amount of players")
     }
@@ -78,20 +78,27 @@ const generateAllPlaques = (numPlayers: number): PlaqueState => {
 
 }
 
-const genPlayer = (color: PlayerColor): Player => {
+const genPlayer = (color: PlayerColor): PlayerData => {
     
-    const startingPeppers = [
-        { kind: 'pepper', color: PepperColor.Red },
-        { kind: 'pepper', color: PepperColor.Blue },
-        { kind: 'pepper', color: PepperColor.Yellow },
-    ]
+    const peppers = {
+        [PepperColor.Red]: 1,
+        [PepperColor.Blue]: 1,
+        [PepperColor.Yellow]: 1,
+        [PepperColor.Black]: 0,
+        [PepperColor.White]: 0,
+        [PepperColor.Brown]: 0,
+        [PepperColor.Green]: 0,
+        [PepperColor.Purple]: 0,
+        [PepperColor.Orange]: 0,
+        [PepperColor.Ghost]: 0,
+    }
 
     const startingActions = [BonusAction.ExtraMove, BonusAction.ExtraPlant, BonusAction.TurnAround]
 
     return {
         kind: 'player',
         color,
-        peppers: startingPeppers as Pepper[],
+        peppers,
         score: 0,
         money: 10,
         plaques: [],
@@ -192,13 +199,23 @@ export const generateMarketDeck = (time: TimeOfDay, numPlayers: number): MarketC
     return marketCards.slice(0, numOrders)
 }
 
-export const gameSetup = (numPlayers: number): GameState => ({
-    timeOfDay: TimeOfDay.MORNING,
-    players: generateAllPlayers(numPlayers),
-    availablePlaques: generateAllPlaques(numPlayers),
-    auctionDeck: generateAuctionDeck(TimeOfDay.MORNING),
-    recipes: generateRecipes(numPlayers),
-    marketCards: generateMarketDeck(TimeOfDay.MORNING, numPlayers),
-    currentPlayerIdx: 0,
-    cells: ["GAME BOARD GOES HERE"],
-})
+export const gameSetup = (numPlayers: number): GameState => {
+    let auctionDeck = generateAuctionDeck(TimeOfDay.MORNING)
+    const startingAuction = auctionDeck.slice(0,numPlayers)
+    auctionDeck = auctionDeck.slice(numPlayers)
+    const players = generateAllPlayers(numPlayers)
+    return {
+        timeOfDay: TimeOfDay.MORNING,
+        players,
+        numPlayers,
+        availablePlaques: generateAllPlaques(numPlayers),
+        auctionDeck,
+        recipes: generateRecipes(numPlayers),
+        marketCards: generateMarketDeck(TimeOfDay.MORNING, numPlayers),
+        currentPlayerIdx: 0,
+        cells: ["GAME BOARD GOES HERE"],
+        currentAuction: startingAuction,
+        playOrder: PlayDirection.FORWARDS,
+        finalTurn: false,
+    }
+}
