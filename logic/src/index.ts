@@ -1,3 +1,4 @@
+
 // export type PepperColorType = "Red"|"Blue"|"Yellow"|"Green"|"Orange"|"Purple"|"Brown"|"White"|"Black"|"Ghost";
 type PlayerColor = "Red"|"Blue"|"Yellow"|"Green"|"Orange"|"Purple";
 type Role = "Path"|"Harvest"|"Plant";
@@ -64,6 +65,7 @@ function pointString(point: Point) {
   * Find the path point between two harvest points
   * @throws
   */
+
 function pathBetween(point: Point, other: Point): Point {
   if (pointRole(point) !== 'Harvest' || pointRole(other) !== 'Harvest') {
     throw new Error(`Both points need to be harvest points: ${pointString(point)} ${pointString(other)}`);
@@ -71,7 +73,7 @@ function pathBetween(point: Point, other: Point): Point {
     throw new Error(`Points not close enough`);
   }
   if (isEven(point.x) && isEven(other.y)) {
-    return { x: this.x, y: other.y };
+    return createSome({ x: this.x, y: other.y });
   } else if (isEven(this.y) && isEven(this.x)) {
     return { x: other.x, y: this.y };
   } else {

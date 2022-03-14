@@ -1,26 +1,51 @@
 // import Board from './Board';
-import BgReact from 'boardgame.io/react'
-import { Ctx } from 'boardgame.io';
-import { GameState } from './types';
+import { Client } from 'boardgame.io/client'
 import {
   gameSetup
 } from './utils/setupMethods'
+import { GameState } from './models'
+import { GamePhases } from './models/types'
+import { buyLot } from './utils/auctionMethods'
 
-const createGame = () => {
+const createGame = (numPlayers: number) => {
   return {
     name: 'Capsaicin',
-    setup: () => (gameSetup(4)),
+    setup: () => (gameSetup(numPlayers)),
+    phases: {
+      [GamePhases.AUCTION]: {
+        start: true,
+        moves: { buyLot },
+        endIf: (G: GameState) => G.currentAuction.length === 0,
+        next: 'PLANT'
+      },
+      PLANT: {
+        next: 'HARVEST'
+      },
+      HARVEST: {
+        next: 'FULFILLMENT'
+      },
+      FULFILLMENT: {
+        next: 'BIDDING'
+        /* onEnd: (G) =>{
+          In this function. You need to refresh the Auction Cards
+          AND check to see if time has progressed from morning to Evening
+          AND check to see if the game is over//it is the last turn
+        }
+        */
+      },
+      BIDDING: {
+        next: 'AUCTION'
+      }
 
-    // endIf: (G: any, ctx: any) => {
-        
-    // }
+    }
+
   };
 }
 
-const createClient = () => {
-  return BgReact.Client({
-    game: createGame(),
-    numPlayers: 4,
+const createClient = (numPlayers: number) => {
+  return Client({
+    game: createGame(numPlayers),
+    numPlayers,
     // board: Board,
     debug: true,
   });

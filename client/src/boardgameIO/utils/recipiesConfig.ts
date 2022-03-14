@@ -1,4 +1,4 @@
-import { PepperColor } from "../types"
+import { PepperColor } from "../models/types"
 export const ALL_RECIPES = [
     {
         name: 'Hungarian Wax Pepper',

@@ -1,4 +1,4 @@
-import { PepperColor, TimeOfDay } from "../types"
+import { PepperColor, TimeOfDay } from "../models/types"
 export const MARKET_CARDS = {
     [TimeOfDay.MORNING]: [
         {

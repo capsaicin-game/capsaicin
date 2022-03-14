@@ -1,5 +1,5 @@
 import React from 'react';
-import { PepperPatch } from 'logic';
+// import { PepperPatch } from 'logic';
 
 const PatchPiece = (): React.ReactElement => {
   return <div className="patch-piece"></div>;

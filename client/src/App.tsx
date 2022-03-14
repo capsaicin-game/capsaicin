@@ -1,16 +1,10 @@
 import React from 'react';
 import './App.css';
-import { Game } from './game/Game';
-import { Client } from 'boardgame.io/client'
-import { Capsaicin } from './boardgameIO/capsaicin'
-import { Debug } from 'boardgame.io/debug'
+import { Game } from './game/Game'
+import createClient from './boardgameIO/gameClient'
 
-const buildClient = () => {
-  const client = Client({
-    game: Capsaicin(),
-    // remove debug log for prod
-    debug: { impl: Debug },
-  });
+const buildClient = (numPlayers: number=4) => {
+  const client = createClient(numPlayers);
   client.start()
 }
 
