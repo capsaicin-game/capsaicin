@@ -4,6 +4,7 @@ import { GameState } from './models'
 import { gameSetup } from './utils/setupMethods'
 
 
+
 export const Capsaicin = () => {
     return {
         name: 'Capsaicin',
