@@ -1,5 +1,5 @@
 // import Board from './Board';
-import BgReact from 'boardgame.io/react'
+import { Client } from 'boardgame.io/client'
 import {
   gameSetup
 } from './utils/setupMethods'
@@ -7,10 +7,10 @@ import { GameState } from './models'
 import { GamePhases } from './models/types'
 import { buyLot } from './utils/auctionMethods'
 
-const createGame = () => {
+const createGame = (numPlayers: number) => {
   return {
     name: 'Capsaicin',
-    setup: () => (gameSetup(4)),
+    setup: () => (gameSetup(numPlayers)),
     phases: {
       [GamePhases.AUCTION]: {
         start: true,
@@ -42,10 +42,10 @@ const createGame = () => {
   };
 }
 
-const createClient = () => {
-  return BgReact.Client({
-    game: createGame(),
-    numPlayers: 4,
+const createClient = (numPlayers: number) => {
+  return Client({
+    game: createGame(numPlayers),
+    numPlayers,
     // board: Board,
     debug: true,
   });

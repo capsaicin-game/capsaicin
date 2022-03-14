@@ -1,5 +1,6 @@
 import { Ctx } from "boardgame.io"
 import { GameState } from '../models'
+import { nextPlayer } from './gameMethods'
 
 export const buyLot = (G: GameState, ctx: Ctx, lotIndex: number) => {
     const currentPlayer = G.players[G.currentPlayerIdx]
@@ -12,6 +13,10 @@ export const buyLot = (G: GameState, ctx: Ctx, lotIndex: number) => {
     G.currentAuction = G.currentAuction.slice(0, lotIndex).concat(G.currentAuction.slice(lotIndex + 1))
 
     G.auctionDeck.push(currentAuctionCard);
+    nextPlayer(G, ctx)
+    // todo
+    // refactor to use ctx for active players
+    ctx.events?.endTurn();
 }
 
 export const refreshAuctionCards = (G: GameState) => {

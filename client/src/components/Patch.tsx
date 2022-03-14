@@ -1,6 +1,40 @@
 import React from 'react';
-import { PepperPatch } from 'logic';
+// export enum PepperColor {
+//   "Red",
+//   "Blue",
+//   "Yellow",
+//   "Green",
+//   "Orange",
+//   "Purple",
+//   "Brown",
+//   "White",
+//   "Black",
+//   "Ghost",
+// }
+// type PlayerColor = "Red"|"Blue"|"Yellow"|"Green"|"Orange"|"Purple";
 
+
+//  interface Pepper {
+//   kind: 'pepper',
+//   color: PepperColor;
+// }
+
+// interface Player {
+//   kind: 'player',
+//   color: PlayerColor;
+// }
+// interface Point {
+//   x: number;
+//   y: number;
+// }
+// type PatchItem = Pepper|Player|null;
+// import { PepperPatch } from 'logic';
+// interface PepperPatch {
+//   grid: PatchItem[];
+//   w: number;
+//   h: number;
+//   players: { [ key: string ]: Point };
+// }
 const PatchPiece = (): React.ReactElement => {
   return <div className="patch-piece"></div>;
 }
